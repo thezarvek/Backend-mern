@@ -1,0 +1,39 @@
+// import express from 'express'
+
+// const app = express();
+
+// app.get('/' , (req , res)=>{
+//     res.send(hey);
+// });
+// app.get('/sub' , (req , res)=>{
+//     res.send("Subscribe to the CodeNook get");
+// });
+
+// app.use((err , req , res , next)=>{
+//     res.status(500).send("Internal server error!");
+// })
+
+// app.listen(3000);
+
+import express from 'express'
+
+const app = express();
+
+app.get('/' , (req , res , next)=>{
+try{
+     res.send(hey);
+}
+catch(err){
+    next(err);
+}
+   
+});
+app.get('/sub' , (req , res)=>{
+    res.send("Subscribe to the CodeNook get");
+});
+
+app.use((err , req , res , next)=>{
+    res.status(500).send(err.message);
+})
+
+app.listen(3000);
