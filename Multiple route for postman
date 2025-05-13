@@ -1,0 +1,23 @@
+import express from 'express'
+
+const app = express();
+
+app.get('/' , (req , res)=>{
+    res.send("Subscribe to the CodeNook get");
+});
+
+app.put('/' , (req , res)=>{
+    res.send("Subscribe to the CodeNook Put");
+});
+
+app.post('/' , (req , res)=>{
+    res.send("Subscribe to the CodeNook Post");
+});
+
+app.delete('/' , (req , res)=>{
+    res.send("Subscribe to the CodeNook delete ");
+});
+
+
+
+app.listen(3000);
