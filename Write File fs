@@ -1,0 +1,39 @@
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
+const PORT = 3000;
+const app = express();
+
+// Boilerplate code
+app.set("view engine", "ejs"); // To use ejs
+app.use(express.static(path.join(__dirname, "public"))); // Use __dirname (built-in in CommonJS)
+app.use(express.json()); // For JSON data from frontend apps
+app.use(express.urlencoded({ extended: true })); // For form data (like HTML forms)
+
+app.get('/', (req, res) => {
+    res.send("Hello, World");
+});
+
+
+app.get('/create' , (req , res)=>{
+
+const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+const year = today.getFullYear();
+const fn = `${day}-${month}-${year}.txt`;
+
+    fs.writeFile(`./files/${fn}` , "daal , cheeni , sarso " , (err)=>{
+        if(err){
+            res.send("Something Went Rong!")
+        }
+        else{
+            res.send("done!")
+        }
+    } )
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
