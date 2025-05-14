@@ -1,0 +1,19 @@
+import express from 'express'
+
+const app = express();
+
+var data = [1,2,3,4];
+
+
+app.get('/data/:number' , (req , res )=>{
+data.push(parseInt(req.params.number)); // used to convert string number to integer number
+res.send(data); // by  pushing number we are sending it 
+});
+
+
+app.get('/sub' , (req , res)=>{
+    res.send("Subscribe to the CodeNook ");
+});
+
+
+app.listen(3000);
